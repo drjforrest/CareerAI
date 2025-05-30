@@ -1,5 +1,6 @@
 import PreferencesForm from "@/components/preferences/preferences-form";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default function PreferencesPage() {
   return (
