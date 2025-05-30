@@ -2,7 +2,7 @@ export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: "CareerCraft AI",
-  description: "Generate CVs, track applications, and get AI-powered feedback to boost your job search.",
+  description: "Your personal AI toolkit for crafting CVs, tracking job applications, and getting feedback to enhance your job search.",
   mainNav: [
     {
       title: "Home",

@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'CareerCraft AI - Smart CV & Application Tracker',
-  description: 'Generate CVs, track applications, and get AI-powered feedback to boost your job search.',
+  title: 'CareerCraft AI - Your Personal Career Toolkit',
+  description: 'Your personal AI toolkit for crafting CVs, tracking job applications, and getting feedback to enhance your job search.',
 };
 
 export default function RootLayout({

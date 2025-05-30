@@ -16,12 +16,12 @@ export default function HomePage() {
                   Craft Your Future with CareerCraft AI
                 </h1>
                 <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                  Automate CV & cover letter generation, track your job applications, and get AI-powered feedback to land your dream job.
+                  Let CareerCraft AI be your personal assistant for creating CVs, tracking applications, and getting AI feedback to help you land your dream job.
                 </p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
                 <Button asChild size="lg" className="shadow-lg hover:shadow-xl transition-shadow">
-                  <Link href="/auth/signup">Get Started Free</Link>
+                  <Link href="/auth/signup">Start Crafting Now</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="shadow-lg hover:shadow-xl transition-shadow">
                   <Link href="/documents">Try Generator</Link>
@@ -44,10 +44,10 @@ export default function HomePage() {
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm text-secondary-foreground">Key Features</div>
+              <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm text-secondary-foreground">Your Personal Toolkit</div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Everything you need to succeed</h2>
               <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                CareerCraft AI provides a comprehensive suite of tools to streamline your job application process.
+                Discover the personal tools CareerCraft AI offers to help streamline your job application process.
               </p>
             </div>
           </div>

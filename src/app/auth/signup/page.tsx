@@ -7,7 +7,7 @@ export default function SignUpPage() {
     <Card className="w-full max-w-md shadow-xl">
       <CardHeader className="text-center">
         <CardTitle className="text-2xl">Create an Account</CardTitle>
-        <CardDescription>Join CareerCraft AI and supercharge your job hunt.</CardDescription>
+        <CardDescription>Join CareerCraft AI and simplify your job application journey.</CardDescription>
       </CardHeader>
       <CardContent>
         <SignUpForm />
