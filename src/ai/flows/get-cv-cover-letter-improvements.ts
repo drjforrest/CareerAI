@@ -9,8 +9,8 @@
  * - GetCvCoverLetterImprovementsOutput - The return type for the getCvCoverLetterImprovements function.
  */
 
-import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import {ai} from '../genkit';
 
 const GetCvCoverLetterImprovementsInputSchema = z.object({
   cv: z.string().describe('The content of the CV to be improved.'),
@@ -26,47 +26,50 @@ const GetCvCoverLetterImprovementsOutputSchema = z.object({
 });
 export type GetCvCoverLetterImprovementsOutput = z.infer<typeof GetCvCoverLetterImprovementsOutputSchema>;
 
-export async function getCvCoverLetterImprovements(input: GetCvCoverLetterImprovementsInput): Promise<GetCvCoverLetterImprovementsOutput> {
-  return getCvCoverLetterImprovementsFlow(input);
-}
-
-const prompt = ai.definePrompt({
-  name: 'getCvCoverLetterImprovementsPrompt',
-  input: {schema: GetCvCoverLetterImprovementsInputSchema},
-  output: {schema: GetCvCoverLetterImprovementsOutputSchema},
-  prompt: `You are an AI assistant that specializes in providing suggestions for improving CVs and cover letters based on a job description and user preferences.
-
-  Provide specific and actionable suggestions for improving both the CV and cover letter.
-
-  Consider the job description and user preferences when generating suggestions.
-
-  Job Description: {{{jobDescription}}}
-  User Preferences: {{{userPreferences}}}
-
-  CV:
-  {{#if cv}}
-  {{{cv}}}
-  {{else}}
-  N/A
-  {{/if}}
-
-  Cover Letter:
-  {{#if coverLetter}}
-  {{{coverLetter}}}
-  {{else}}
-  N/A
-  {{/if}}
-  `,
-});
-
-const getCvCoverLetterImprovementsFlow = ai.defineFlow(
+export const getCvCoverLetterImprovements = ai.defineFlow(
   {
-    name: 'getCvCoverLetterImprovementsFlow',
+    name: 'getCvCoverLetterImprovements',
     inputSchema: GetCvCoverLetterImprovementsInputSchema,
     outputSchema: GetCvCoverLetterImprovementsOutputSchema,
   },
-  async input => {
-    const {output} = await prompt(input);
-    return output!;
+  async (input: GetCvCoverLetterImprovementsInput): Promise<GetCvCoverLetterImprovementsOutput> => {
+    const { text } = await ai.generate(`Analyze and provide improvements for the following CV and cover letter:
+
+CV:
+${input.cv}
+
+Cover Letter:
+${input.coverLetter}
+
+Job Description:
+${input.jobDescription}
+
+Preferences:
+${input.userPreferences || 'None provided'}
+
+Provide your suggestions in a clear, organized format with separate sections for CV and cover letter improvements.
+
+For the CV:
+- Ensure it highlights relevant skills and experience
+- Suggest improvements to formatting and structure
+- Identify any missing key information
+- Recommend ways to better align with the job requirements
+
+For the cover letter:
+- Check if it effectively addresses the key requirements
+- Suggest improvements to the tone and style
+- Identify areas that could be more compelling
+- Recommend ways to better showcase qualifications`);
+
+    if (!text) {
+      throw new Error('Failed to generate improvements');
+    }
+
+    const [cvImprovements, coverLetterImprovements] = text.split('\n\n');
+
+    return {
+      cvImprovements,
+      coverLetterImprovements,
+    };
   }
 );
